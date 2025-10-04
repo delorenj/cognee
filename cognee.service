@@ -1,0 +1,16 @@
+[Unit]
+Description=Cognee AI Memory Service
+After=network.target
+
+[Service]
+Type=simple
+User=delorenj
+Group=delorenj
+WorkingDirectory=/home/delorenj/code/mcp/cognee
+Environment=PATH=/home/delorenj/.local/share/mise/installs/python/3.12.11/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=/home/delorenj/.local/share/mise/installs/uv/0.7.19/uv-x86_64-unknown-linux-musl/uv run python -m uvicorn cognee.api.client:app --host 0.0.0.0 --port 8822
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

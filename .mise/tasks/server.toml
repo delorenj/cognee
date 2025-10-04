@@ -1,0 +1,14 @@
+[tasks.start]
+description = "Start the Cognee server"
+run = "uv run python -m uvicorn cognee.api.client:app --host 0.0.0.0 --port 8822"
+
+[tasks.stop]
+description = "Stop the Cognee server"
+run = "pkill -f 'uvicorn cognee.api.client:app' || echo 'No server process found'"
+
+[tasks.install-service]
+description = "Install dependencies and setup the service"
+run = [
+    "uv sync",
+    "echo 'Dependencies installed successfully'"
+]

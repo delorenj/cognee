@@ -1,0 +1,20 @@
+[tools]
+python = "3.12.11"
+
+[tasks.start]
+description = "Start the Cognee service"
+run = "sudo service cognee start"
+
+[tasks.stop]
+description = "Stop the Cognee service"
+run = "sudo service cognee stop"
+
+[tasks.install-service]
+description = "Install dependencies and setup systemd service"
+run = [
+    "uv sync",
+    "sudo cp cognee.service /etc/systemd/system/",
+    "sudo systemctl daemon-reload",
+    "sudo systemctl enable cognee",
+    "echo 'Service installed. Use: sudo service cognee start'"
+]
